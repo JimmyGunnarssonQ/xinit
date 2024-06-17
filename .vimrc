@@ -1,10 +1,11 @@
 " Calling plugins.
-call plug#begin()
+call plug#begin("$HOME/.vim/plugged")
 	Plug 'junegunn/goyo.vim'
 	Plug 'preservim/NERDTree'
 	Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 	Plug 'Valloric/YouCompleteMe'
 	Plug 'itchyny/lightline.vim'
+	Plug 'vimwiki/vimwiki'
 	Plug 'lervag/vimtex'
 	Plug 'vim-airline/vim-airline'
 	Plug 'kien/ctrlp.vim'
@@ -15,8 +16,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-map <F2> :NERDTreeToggle <CR>
-
+let mapleader=" "
+map <F2> :NERDTreeToggle<CR>
+map <leader>f :Goyo \| set linebreak<CR>
+map <leader>o: setlocal spell! spelllang=en_US<CR>
+map <leader>s :!clear && shellcheck %<CR>
 inoremap jf <esc>
 "" Ease of writing 
 set wrap
@@ -31,7 +35,7 @@ set autoindent
 syntax on
 set syntax=context
 filetype plugin indent on "for YCM
-set number
+set number relativenumber
 """"No backups 
 set noswapfile 
 set nobackup 
@@ -58,7 +62,6 @@ set shellcmdflag=-ic
 """Menus 
 set wildmenu 
 set wildmode=list:longest 
-set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 augroup filetype_vim
 	autocmd! 
